@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   public cellWidth: number;
   public myForm: FormGroup;
   public cellHeight: number;
+  public play: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,5 +49,9 @@ export class AppComponent implements OnInit {
 
   public getNextStep(): void {
     this.gameOfLife.getNextStep();
+  }
+
+  public isPlaying(data: boolean): void {
+    this.play = data;
   }
 }

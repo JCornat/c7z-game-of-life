@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'c7z-game-of-life',
   templateUrl: './game-of-life.component.html',
   styleUrls: ['./game-of-life.component.scss'],
 })
-export class GameOfLifeComponent implements OnInit {
+export class GameOfLifeComponent {
   @ViewChild('canvas') set canvas(data: any) {
     if (!data) {
       return;
@@ -18,6 +18,8 @@ export class GameOfLifeComponent implements OnInit {
     this._canvas = data;
     this.init();
   }
+
+  @Output() public changedStatus = new EventEmitter<boolean>();
 
   @Input('cellWidth') set cellWidth(data: number) {
     this._cellWidth = data;
@@ -60,23 +62,15 @@ export class GameOfLifeComponent implements OnInit {
   }
 
   public initializeDefaultVariables(): void {
-    console.log('ngOnInit');
-    this._fieldWidth = 10;
-    this._fieldHeight = 10;
-    this._cellHeight = 40;
-    this._cellWidth = 40;
-  }
-
-  public ngOnInit(): void {
-    //
-  }
-
-  public check(): void {
-
+    this._fieldWidth = 50;
+    this._fieldHeight = 50;
+    this._cellHeight = 10;
+    this._cellWidth = 10;
   }
 
   public togglePlay(): void {
     this.isPlaying = !this.isPlaying;
+    this.changedStatus.emit(this.isPlaying);
 
     if (!this.isPlaying) {
       cancelAnimationFrame(this.animationFrameId);

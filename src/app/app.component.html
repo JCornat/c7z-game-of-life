@@ -12,7 +12,13 @@
   </div>
 </form>
 
-<button (click)="togglePlay()">Play</button>
-<button (click)="getNextStep()">Step</button>
+<div>
+  <button (click)="togglePlay()">
+    <ng-container *ngIf="!play">Play</ng-container>
+    <ng-container *ngIf="play">Pause</ng-container>
+  </button>
 
-<c7z-game-of-life [fieldWidth]="fieldWidth" [fieldHeight]="fieldHeight" [cellWidth]="cellWidth" [cellHeight]="cellHeight" #gameOfLife></c7z-game-of-life>
+  <button (click)="getNextStep()" [disabled]="play">Step</button>
+</div>
+
+<c7z-game-of-life [fieldWidth]="fieldWidth" [fieldHeight]="fieldHeight" [cellWidth]="cellWidth" [cellHeight]="cellHeight" #gameOfLife (changedStatus)="isPlaying($event)"></c7z-game-of-life>

@@ -149,13 +149,19 @@ export class GameOfLifeComponent implements OnInit {
 
     const position = this.getCellByPoint(point, this.grid);
     this.grid[position.x][position.y] = !this.grid[position.x][position.y];
-    const xxx = this.countAdjacentCell(position);
-    console.log(this.grid, xxx);
+    this.draw();
   }
 
   public gameLoop(): void {
     this.generateNextGeneration();
     this.draw();
+
+    if (this.nextStep) {
+      this.nextStep = false;
+      return;
+    }
+
+    this.animationFrameId = requestAnimationFrame(this.gameLoop.bind(this));
   }
 
   public draw(): void {
@@ -167,21 +173,14 @@ export class GameOfLifeComponent implements OnInit {
         const cell = this.grid[i][j];
 
         if (cell) {
-          this.context.fillStyle = "#e0e0e0";
+          this.context.fillStyle = '#e0e0e0';
         } else {
-          this.context.fillStyle = "#ff1744";
+          this.context.fillStyle = '#ff1744';
         }
 
         this.context.fillRect(i * this._cellWidth, j * this._cellHeight, this._cellWidth, this._cellHeight);
       }
     }
-
-    if (this.nextStep) {
-      this.nextStep = false;
-      return;
-    }
-
-    this.animationFrameId = requestAnimationFrame(this.draw.bind(this));
   }
 
   public getCellByPoint(point: { x: number, y: number }, field: any[][]): { x: number, y: number } {

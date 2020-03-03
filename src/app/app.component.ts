@@ -23,10 +23,10 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.fieldWidth = 10;
-    this.fieldHeight = 10;
-    this.cellHeight = 40;
-    this.cellWidth = 40;
+    this.fieldWidth = 50;
+    this.fieldHeight = 50;
+    this.cellHeight = 10;
+    this.cellWidth = 10;
 
     this.myForm = this.formBuilder.group({
       fieldWidth: this.fieldWidth,

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { GameOfLifeModule } from 'game-of-life';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { GameOfLifeModule } from '../../projects/game-of-life/src/lib/game-of-life.module';
 
 @NgModule({
   declarations: [

@@ -128,7 +128,7 @@
       "projectType": "library",
       "root": "projects/game-of-life",
       "sourceRoot": "projects/game-of-life/src",
-      "prefix": "lib",
+      "prefix": "c7z",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

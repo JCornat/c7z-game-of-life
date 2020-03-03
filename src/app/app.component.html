@@ -1,1 +1,18 @@
-<c7z-game-of-life></c7z-game-of-life>
+<form [formGroup]="myForm">
+  <div>
+    Taille terrain :
+    <input type="number" formControlName="fieldWidth">
+    <input type="number" formControlName="fieldHeight">
+  </div>
+
+  <div>
+    Taille cellule :
+    <input type="number" formControlName="cellWidth">
+    <input type="number" formControlName="cellHeight">
+  </div>
+</form>
+
+<button (click)="togglePlay()">Play</button>
+<button (click)="getNextStep()">Step</button>
+
+<c7z-game-of-life [fieldWidth]="fieldWidth" [fieldHeight]="fieldHeight" [cellWidth]="cellWidth" [cellHeight]="cellHeight" #gameOfLife></c7z-game-of-life>

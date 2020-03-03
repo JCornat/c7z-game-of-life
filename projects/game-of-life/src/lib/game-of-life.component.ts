@@ -16,31 +16,26 @@ export class GameOfLifeComponent implements OnInit {
     }
 
     this._canvas = data;
-    console.log('init', data);
     this.init();
   }
 
   @Input('cellWidth') set cellWidth(data: number) {
     this._cellWidth = data;
-    console.log('init1', data);
     this.init();
   }
 
   @Input('cellHeight') set cellHeight(data: number) {
     this._cellHeight = data;
-    console.log('init2', data);
     this.init();
   }
 
   @Input('fieldWidth') set fieldWidth(data: number) {
     this._fieldWidth = data;
-    console.log('init3', data);
     this.init();
   }
 
   @Input('fieldHeight') set fieldHeight(data: number) {
     this._fieldHeight = data;
-    console.log('init4', data);
     this.init();
   }
 
@@ -100,7 +95,6 @@ export class GameOfLifeComponent implements OnInit {
       return;
     }
 
-    console.log('initx');
     this.resizeCanvas();
     this.initializeGame();
   }
@@ -165,7 +159,6 @@ export class GameOfLifeComponent implements OnInit {
   }
 
   public draw(): void {
-    console.log('draw');
     this.context.clearRect(0, 0, 300, 300);
 
     for (let i = 0; i < this.grid.length; i++) {
@@ -173,9 +166,9 @@ export class GameOfLifeComponent implements OnInit {
         const cell = this.grid[i][j];
 
         if (cell) {
-          this.context.fillStyle = '#e0e0e0';
-        } else {
           this.context.fillStyle = '#ff1744';
+        } else {
+          this.context.fillStyle = '#e0e0e0';
         }
 
         this.context.fillRect(i * this._cellWidth, j * this._cellHeight, this._cellWidth, this._cellHeight);
